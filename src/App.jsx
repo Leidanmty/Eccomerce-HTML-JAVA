@@ -1,8 +1,8 @@
 
-import { Container } from 'react-bootstrap'
-import { HashRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import { NavBar } from './components'
+import { Container } from 'react-bootstrap'
+import { NavBar } from "./components";
+import { HashRouter, Route, Routes } from 'react-router-dom'
 import { Home, Login, Product, Purchases } from './pages'
 
 function App() {
