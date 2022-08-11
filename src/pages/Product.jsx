@@ -1,10 +1,15 @@
 import React from 'react';
+import { Col, Row } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
 const Product = () => {
+    const allProducts = useSelector((state) => state.products)
     return (
-        <div>
-            <h1>Cada producto será un link que llevará a la ruta “/product/:id”, cuyo id dependerá del producto seleccionado. </h1>
-        </div>
+        <Row>
+            <Col>
+                <h1>Hola mundo</h1>
+            </Col>
+        </Row>
     );
 };
 

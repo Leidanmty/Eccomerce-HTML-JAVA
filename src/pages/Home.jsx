@@ -3,9 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Col, ListGroup, Row, Card, Button } from 'react-bootstrap';
 import { filterCategoryThunk, getProductsThunks } from '../store/slices/productsDetails.slice';
+import "../styles/home.css"
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [categories, setCategories] = useState([]);
 
     const products = useSelector((state) => state.products)
@@ -43,12 +46,18 @@ const Home = () => {
                         <h1>Products</h1>
                         {products.map((product) => (
                             <Col key={product.id}>
-                                <Card style={{ width: '18rem' }}>
-                                    <Card.Img variant="top" src={product.productImgs[0]} />
-                                    <Card.Body>
+                                <Card className="cardu" 
+                                style={{ width: '18rem' }}
+                                onClick={() => navigate(`/product/${product.id}`)}
+                                >
+                                    <Card.Img className="imagen" variant="top" src={product.productImgs[0]} />
+                                    <Card.Body className='cardBody'>
                                         <Card.Title>{product.category.name}</Card.Title>
                                         <Card.Text>
-                                            {product.description}
+                                            ${product.price}
+                                        </Card.Text>
+                                        <Card.Text>
+                                            {product.title}
                                         </Card.Text>
                                         <Button variant="primary">Add Cart</Button>
                                     </Card.Body>

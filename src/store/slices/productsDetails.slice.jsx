@@ -25,11 +25,18 @@ export const getProductsThunks = () => (dispatch) => {
 export const filterCategoryThunk = (id) => (dispatch) => {
     dispatch(setIsLoading(true));
     return axios
-      .get(`https://ecommerce-api-react.herokuapp.com/api/v1/products/${id}`)
-      .then((res) => dispatch(setProducts(res.data.data.products)))
-      .finally(() => dispatch(setIsLoading(false)));
-  };
+        .get(`https://ecommerce-api-react.herokuapp.com/api/v1/products?category=${id}`)
+        .then((res) => dispatch(setProducts(res.data.data.products)))
+        .finally(() => dispatch(setIsLoading(false)));
+};
 
+export const filterProductThunk = (searchValue) => (dispatch) => {
+    dispatch(setIsLoading(true));
+    return axios
+        .get(`https://ecommerce-api-react.herokuapp.com/api/v1/products?category=${searchValue}`)
+        .then((res) => dispatch(setProducts(res.data.data.products)))
+        .finally(() => dispatch(setIsLoading(false)));
+};
 
 export const { setProducts } = productsSlice.actions;
 

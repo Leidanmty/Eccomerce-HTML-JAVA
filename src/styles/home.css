@@ -1,0 +1,13 @@
+h2 {
+    color: brown;
+}
+
+.imagen{
+    object-fit: contain;
+    height: 200px;
+}
+
+.cardu{
+    margin-bottom: 1rem;
+    padding: 1rem;
+}

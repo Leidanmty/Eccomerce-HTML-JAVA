@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar, Container, Nav, Button, Offcanvas, Form } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
+import { filterProductThunk } from '../store/slices/productsDetails.slice';
 
 const NavBar = () => {
+    const dispatch = useDispatch();
+    const [searchValue, setSearchValue] = useState("")
+
     return (
         <>
             <Navbar className="mb-3" bg="success" variant="success" expand='md'>
@@ -31,8 +36,13 @@ const NavBar = () => {
                                     placeholder="Search"
                                     className="me-2"
                                     aria-label="Search"
+                                    onChange={(e) => setSearchValue(e.target.value)}
+                                    value={searchValue}
                                 />
-                                <Button variant="outline-dark">Search</Button>
+                                <Button 
+                                variant="outline-dark"
+                                onClick={() => dispatch(filterProductThunk(searchValue))}
+                                >Search</Button>
                             </Form>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
