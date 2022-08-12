@@ -22,7 +22,7 @@ const Home = () => {
 
     }, []);
 
-    console.log(products);
+    //console.log(products);
 
     return (
         <div>
@@ -46,7 +46,8 @@ const Home = () => {
                         <h1>Products</h1>
                         {products.map((product) => (
                             <Col key={product.id}>
-                                <Card className="cardu" 
+                                <Card className="cardu"
+                                border="primary" 
                                 style={{ width: '18rem' }}
                                 onClick={() => navigate(`/product/${product.id}`)}
                                 >

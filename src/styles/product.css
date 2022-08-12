@@ -1,0 +1,21 @@
+.quantity-box{
+    width: 50px;
+    text-align: center;
+    align-self: center;
+}
+
+.text-muted{
+    display: flex;
+    justify-content: end;
+}
+
+.add{
+    width: 180px;
+    height: 50px;
+}
+
+/*.butongrup{
+    display: flex;
+    align-items: flex-end;
+}*/
+

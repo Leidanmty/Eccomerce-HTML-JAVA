@@ -6,7 +6,28 @@ import { filterProductThunk } from '../store/slices/productsDetails.slice';
 
 const NavBar = () => {
     const dispatch = useDispatch();
-    const [searchValue, setSearchValue] = useState("")
+    const [searchValue, setSearchValue] = useState("");
+
+    const navigate = useNavigate();
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => {
+        const token = localStorage.getItem("token")
+        if (token) {
+            setShow(true);
+        } else {
+            navigate("/login")
+        }
+    };
+
+    const logout = () => {
+        localStorage.setItem("token", "");
+        navigate("/login");
+    };
+
+    const token = localStorage.getItem("token");
 
     return (
         <>
@@ -39,9 +60,9 @@ const NavBar = () => {
                                     onChange={(e) => setSearchValue(e.target.value)}
                                     value={searchValue}
                                 />
-                                <Button 
-                                variant="outline-dark"
-                                onClick={() => dispatch(filterProductThunk(searchValue))}
+                                <Button
+                                    variant="outline-dark"
+                                    onClick={() => dispatch(filterProductThunk(searchValue))}
                                 >Search</Button>
                             </Form>
                         </Offcanvas.Body>
