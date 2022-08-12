@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Navbar, Container, Nav, Button, Offcanvas, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
+import Cart from "./Cart"
 import { filterProductThunk } from '../store/slices/productsDetails.slice';
 
 const NavBar = () => {
@@ -31,6 +32,7 @@ const NavBar = () => {
 
     return (
         <>
+            <Cart show={show} handleClose={handleClose}/>
             <Navbar className="mb-3" bg="success" variant="success" expand='md'>
                 <Container fluid>
                     <Navbar.Brand href="/#/">E-commerce</Navbar.Brand>
@@ -47,9 +49,14 @@ const NavBar = () => {
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
-                                <Nav.Link href="/#/Login">Login</Nav.Link>
+                                {token ? (
+                                    <Nav.Link onClick={logout}>Logout</Nav.Link>
+                                ) : (
+                                    <Nav.Link href="/#/Login">Login</Nav.Link>
+                                )}
+                                
                                 <Nav.Link href="/#/Purchases">Purchases</Nav.Link>
-                                <Nav.Link href="/#/">Cart</Nav.Link>
+                                <Nav.Link onClick={handleShow}>Cart</Nav.Link>
                             </Nav>
                             <Form className="d-flex">
                                 <Form.Control
