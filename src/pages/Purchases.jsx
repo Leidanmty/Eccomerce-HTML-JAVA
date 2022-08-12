@@ -19,7 +19,7 @@ const Purchases = () => {
             {purchases.map((purchase) => (
                 <Col lg={12} className="mb-5" key={purchase.id}>
                     <Card>
-                        <Card.Header>{purchase.createdAt}</Card.Header>
+                        <Card.Header>Create date: {purchase.createdAt}</Card.Header>
                         <Card.Body>
                             <blockquote className="blockquote mb-0">
                                 {purchase.cart.products.map((items) => (
@@ -42,7 +42,7 @@ const Purchases = () => {
                                 ))}
                             </blockquote>
                         </Card.Body>
-                        <Card.Footer className="text-muted">{purchase.updatedAt}</Card.Footer>
+                        <Card.Footer className="text-muted">Update date:{purchase.updatedAt}</Card.Footer>
                     </Card>
                 </Col>
             ))}

@@ -9,6 +9,7 @@ const Product = () => {
     const allProducts = useSelector((state) => state.products);
     const [productDetail, SetProductDetail] = useState({});
     const [infoProduct, setInfoProduct] = useState([]);
+    const [suggestedProducts, setSuggestedProducts] = useState([]);
 
     const { id } = useParams();
 
@@ -24,6 +25,21 @@ const Product = () => {
         setCounter(counter - 1);
     };
 
+    const addToCart = (id) => {
+        const cart = {
+            id: productDetail.id,
+            quantity: counter
+        }
+        dispatch(addProductsThunk(cart))
+    }
+    const suggestedAddToCart = (id) => {
+        const cart = {
+            id: id,
+            quantity: 1
+        }
+        dispatch(addProductsThunk(cart))
+    }
+
     useEffect(() => {
         dispatch(getProductsThunks());
     }, []);
@@ -34,6 +50,7 @@ const Product = () => {
 
         const filteredProduct = allProducts.find((oneProduct) => oneProduct.category.id === productFind.category.id);
         setInfoProduct(filteredProduct);
+        setSuggestedProducts(filteredProduct);
     }, [allProducts, id]);
 
     return (
@@ -88,7 +105,7 @@ const Product = () => {
                                 <Col>
                                     <ButtonGroup className='d-flex' size="md">
                                         <Button
-                                            disabled={counter === 1}                                            
+                                            disabled={counter === 1}
                                             onClick={decrement}
                                             className="decrement"
                                         >
@@ -97,7 +114,7 @@ const Product = () => {
                                         <div className="quantity-box">
                                             <small>{counter}</small>
                                         </div>
-                                        <Button  onClick={increment}>
+                                        <Button onClick={increment}>
                                             <i className="bx bx-plus"></i>
                                         </Button>
                                     </ButtonGroup>
@@ -106,7 +123,12 @@ const Product = () => {
                         </blockquote>
                     </Card.Body>
                     <Card.Footer className="text-muted">
-                        <Button className='add'  variant="primary">Add Cart</Button>
+                        <Button className='add'
+                            onClick={() => addToCart(productDetail?.id)}
+                            variant="primary"
+                        >
+                            Add Cart
+                        </Button>
                     </Card.Footer>
                 </Card>
             </Col>

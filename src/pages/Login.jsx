@@ -10,14 +10,15 @@ const Login = () => {
 
     const submit = (data) => {
         axios
-            .post("https://news-app-academlo.herokuapp.com/login/", data)
+            .post("https://ecommerce-api-react.herokuapp.com/api/v1/users/login", data)
             .then((res) => {
-                navigate("/");
-                localStorage.setItem("token", res.data.access);
+                console.log(res.data)
+                // navigate("/");
+                localStorage.setItem("token", res.data.data.token);
             })
 
             .catch((error) => {
-                if (error.response.status === 401) {
+                if (error.response.status === 404) {
                     alert("Credenciales inválidas");
                 }
                 console.log(error.response);
